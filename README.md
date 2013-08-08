@@ -1,2 +1,3 @@
-JEngine
-=======
+- Javadoc.
+- Actors need a z-index.
+- Actor.update and Actor.init need access to the ActorManager.
