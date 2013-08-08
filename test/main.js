@@ -13,7 +13,7 @@ define([
     'use strict';
 
     require([
-        'test/spec/util/array',
+        'test/spec/util/iterator',
         'test/spec/observable',
         'test/spec/actorManager',
         'test/spec/jengine',

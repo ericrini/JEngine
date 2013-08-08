@@ -22,7 +22,7 @@ module.exports = function(grunt) {
                     baseUrl: '.',
                     include: ['src/JEngine'],
                     insertRequire: ['src/JEngine'],
-                    name: 'lib/require/almond',
+                    name: 'lib/almond/almond',
                     optimize: 'none',
                     out: 'build/JEngine.min.js'
                 }

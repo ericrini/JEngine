@@ -1,9 +1,9 @@
 define([
-    'src/util/Array'
-], function (Array) {
+    'src/util/Iterator'
+], function (Iterator) {
     'use strict';
 
-    describe('The Array utilities', function () {
+    describe('The Iterator utilities', function () {
         var array;
 
         beforeEach(function () {
@@ -25,11 +25,11 @@ define([
 
         it('can find an element in an array.', function () {
             var found;
-            found = Array.find(array, function (element) {
+            found = Iterator.find(array, function (element) {
                 return element.id === 2;
             });
             expect(found).toBe(array[1]);
-            found = Array.find(array, function (element) {
+            found = Iterator.find(array, function (element) {
                 return element.id === 4;
             });
             expect(found).toBe(false);
@@ -37,7 +37,7 @@ define([
 
         it('can iterate all elements in an array.', function () {
             var count = 0;
-            Array.each(array, function(element, index, source) {
+            Iterator.each(array, function(element, index, source) {
                 expect(element.id).toBe(count + 1);
                 expect(index).toBe(count);
                 expect(source).toBe(array);
