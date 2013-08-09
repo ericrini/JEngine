@@ -14,6 +14,8 @@ define([
 
     require([
         'test/spec/util/iterator',
+        'test/spec/geometry/point',
+        'test/spec/geometry/matrix',
         'test/spec/observable',
         'test/spec/actorManager',
         'test/spec/jengine',
