@@ -17,7 +17,7 @@ define([], function () {
         return Math.sin(angle) * magnitude;
     };
 
-    return function (inX, inY) {
+    var Vector = function (inX, inY) {
         var self = this;
         var x = inX ? inX : 0;
         var y = inY ? inY : 0;
@@ -62,10 +62,28 @@ define([], function () {
                 return angle * (180 / Math.PI); // Convert to degrees.
             },
             set: function (inAngle) {
-                angle = (180 / Math.PI) / inAngle; // Convert to radians.
+                angle = (inAngle * Math.PI) / 180; // Convert to radians.
                 x = getComponentX(angle, magnitude);
                 y = getComponentY(angle, magnitude);
             }
         });
+
+        self.getSum = function (inVector) {
+            return new Vector(x + inVector.x, y + inVector.y);
+        };
+
+        self.getDifference = function (inVector) {
+            return new Vector(x - inVector.x, y - inVector.y);
+        };
+
+        self.getDotProduct = function (inVector) {
+            return (x * inVector.x) + (y * inVector.y);
+        };
+
+        self.getNormalVector = function () {
+            return new Vector(-1 * x, y);
+        };
     };
+
+    return Vector;
 });
