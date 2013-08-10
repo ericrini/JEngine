@@ -3,7 +3,7 @@ define([
 ], function (Iterator) {
     'use strict';
 
-    describe('The Iterator utilities', function () {
+    describe('The iterator utilities', function () {
         var array;
 
         beforeEach(function () {

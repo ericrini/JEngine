@@ -22,7 +22,7 @@ define([
             expect(m2.f).toBe(6);
         });
 
-        it('can be multiplied by another matrix', function () {
+        it('can find the product of itself and another Matrix', function () {
             var m1 = new Matrix(4, 3, 2, 3, 5, 9);
             var m2 = new Matrix(6, 2, 7, 3, 8, 2);
             var m3 = m1.getProduct(m2);

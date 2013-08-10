@@ -13,9 +13,11 @@ define([
     'use strict';
 
     require([
+        'test/spec/util/inheritance',
         'test/spec/util/iterator',
         'test/spec/geometry/point',
         'test/spec/geometry/matrix',
+        'test/spec/geometry/vector',
         'test/spec/observable',
         'test/spec/actorManager',
         'test/spec/jengine',
