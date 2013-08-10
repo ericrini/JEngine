@@ -1,6 +1,0 @@
-- Need to add Vector and Matrix constructors.
-- Need to add collision detection routine to ActorManager.
-- Definition of event arguments for Actor init, update, render, collide, etc.
-- Add a z-index to the Actor.
-- Need to add unit tests for Actor.
-- Pretty much everything needs javadoc. I think its ok to delay this.
