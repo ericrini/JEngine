@@ -1,4 +1,5 @@
 TODO LIST
+    - Change non-constructor modules to start with a lowercase letter.
     - Actors need a z-index.
     - Actor.update and Actor.init need access to the ActorManager.
     - JAVADOC ALL THE THINGS!
