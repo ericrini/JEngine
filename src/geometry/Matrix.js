@@ -1,77 +1,77 @@
 define([], function () {
     'use strict';
 
-    var Matrix = function (inA, inB, inC, inD, inE, inF) {
+    var Matrix = function (a, b, c, d, e, f) {
         var self = this;
-        var a = inA ? inA : 1;
-        var b = inB ? inB : 0;
-        var c = inC ? inC : 0;
-        var d = inD ? inD : 1;
-        var e = inE ? inE : 0;
-        var f = inF ? inF : 0;
+        var _a = a ? a : 1;
+        var _b = b ? b : 0;
+        var _c = c ? c : 0;
+        var _d = d ? d : 1;
+        var _e = e ? e : 0;
+        var _f = f ? f : 0;
 
         Object.defineProperty(self, "a", {
             get: function () {
-                return a;
+                return _a;
             },
-            set: function (inA) {
-                a = inA;
+            set: function (a) {
+                _a = a;
             }
         });
 
         Object.defineProperty(self, "b", {
             get: function () {
-                return b;
+                return _b;
             },
-            set: function (inB) {
-                b = inB;
+            set: function (b) {
+                _b = b;
             }
         });
 
         Object.defineProperty(self, "c", {
             get: function () {
-                return c;
+                return _c;
             },
-            set: function (inC) {
-                c = inC;
+            set: function (c) {
+                _c = c;
             }
         });
 
         Object.defineProperty(self, "d", {
             get: function () {
-                return d;
+                return _d;
             },
-            set: function (inD) {
-                d = inD;
+            set: function (d) {
+                _d = d;
             }
         });
 
         Object.defineProperty(self, "e", {
             get: function () {
-                return e;
+                return _e;
             },
-            set: function (inE) {
-                e = inE;
+            set: function (e) {
+                _e = e;
             }
         });
 
         Object.defineProperty(self, "f", {
             get: function () {
-                return f;
+                return _f;
             },
-            set: function (inF) {
-                f = inF;
+            set: function (f) {
+                _f = f;
             }
         });
 
         self.getProduct = function (inMatrix) {
             return new Matrix(
-                (a * inMatrix.a) + (c * inMatrix.b),
-                (b * inMatrix.a) + (d * inMatrix.b),
-                (a * inMatrix.c) + (c * inMatrix.d),
-                (b * inMatrix.c) + (d * inMatrix.d),
-                (a * inMatrix.e) + (c * inMatrix.f) + e,
-                (b * inMatrix.e) + (d * inMatrix.f) + f
+                (_a * inMatrix.a) + (_c * inMatrix.b),
+                (_b * inMatrix.a) + (_d * inMatrix.b),
+                (_a * inMatrix.c) + (_c * inMatrix.d),
+                (_b * inMatrix.c) + (_d * inMatrix.d),
+                (_a * inMatrix.e) + (_c * inMatrix.f) + _e,
+                (_b * inMatrix.e) + (_d * inMatrix.f) + _f
             );
         };
     };

@@ -1,33 +1,33 @@
 define([], function () {
     'use strict';
 
-    var Point = function (inX, inY) {
+    var Point = function (x, y) {
         var self = this;
-        var x = inX ? inX : 0;
-        var y = inY ? inY : 0;
+        var _x = x ? x : 0;
+        var _y = y ? y : 0;
 
         Object.defineProperty(self, "x", {
             get: function () {
-                return x;
+                return _x;
             },
-            set: function (inX) {
-                x = inX;
+            set: function (x) {
+                _x = x;
             }
         });
 
         Object.defineProperty(self, "y", {
             get: function () {
-                return y;
+                return _y;
             },
-            set: function (inY) {
-                y = inY;
+            set: function (y) {
+                _y = y;
             }
         });
 
-        self.transform = function (inMatrix) {
+        self.transform = function (matrix) {
             return new Point (
-                (inMatrix.a * x) + (inMatrix.c * y) + inMatrix.e,
-                (inMatrix.b * x) + (inMatrix.d * y) + inMatrix.f
+                (matrix.a * _x) + (matrix.c * _y) + matrix.e,
+                (matrix.b * _x) + (matrix.d * _y) + matrix.f
             );
         };
     };
