@@ -1,4 +1,8 @@
 TODO LIST
+    - Vector should extend Point and be constructable from a Point.
+    - Make sure Polygon is using Vector only when absolutely required (possibly never).
+    - Add simple\common transforms to Matrix.
+    - Test transforming a Polygon with a Matrix.
     - Change non-constructor modules to start with a lowercase letter.
     - Actors need a z-index.
     - Actor.update and Actor.init need access to the ActorManager.
