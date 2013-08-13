@@ -27,12 +27,24 @@ define([
             poly3.addVertex(200, 200);
             poly3.addVertex(100, 200);
 
-            expect(poly1.intersects(poly2)).toBe(true);
-            expect(poly1.intersects(poly3)).toBe(false);
-            expect(poly2.intersects(poly1)).toBe(true);
-            expect(poly2.intersects(poly3)).toBe(true);
-            expect(poly3.intersects(poly1)).toBe(false);
-            expect(poly3.intersects(poly2)).toBe(true);
+            expect(poly1.intersects(poly3)).toBe(null);
+            expect(poly3.intersects(poly1)).toBe(null);
+
+            expect(poly1.intersects(poly2).magnitude).toBe(50);
+            expect(poly1.intersects(poly2).x).toBe(50);
+            expect(poly1.intersects(poly2).y).toBe(0);
+
+            expect(poly2.intersects(poly1).magnitude).toBe(50);
+            expect(poly2.intersects(poly1).x).toBe(50);
+            expect(poly2.intersects(poly1).y).toBe(0);
+
+            expect(poly2.intersects(poly3).magnitude).toBe(50);
+            expect(poly2.intersects(poly3).x).toBe(50);
+            expect(poly2.intersects(poly3).y).toBe(0);
+
+            expect(poly3.intersects(poly2).magnitude).toBe(50);
+            expect(poly3.intersects(poly2).x).toBe(50);
+            expect(poly3.intersects(poly2).y).toBe(0);
         });
     });
 });

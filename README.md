@@ -3,11 +3,11 @@ TODO LIST
     - Make sure Polygon is using Vector only when absolutely required (possibly never).
     - Add simple\common transforms to Matrix.
     - Test transforming a Polygon with a Matrix.
+    - Evaluate need to replace trig functions in Vector with approximate lookups.
     - Change non-constructor modules to start with a lowercase letter.
     - Actors need a z-index.
     - Actor.update and Actor.init need access to the ActorManager.
     - JAVADOC ALL THE THINGS!
-    - Evaluate need to replace trig functions with approximate lookups.
 
 
 
@@ -35,6 +35,10 @@ FUNCTIONAL NOTES
 RESOURCES
     GENERAL MATH REFERENCE
     http://chortle.ccsu.edu/VectorLessons/vectorIndex.html#15
+    http://www.math.oregonstate.edu/home/programs/undergrad/CalculusQuestStudyGuides/vcalc/vcalc.html
+
+    DISTANCE FORMULA
+    http://www.purplemath.com/modules/distform.htm
 
     SEPARATING AXIS THEOREM
     http://www.codezealot.org/archives/55#sat-convex

@@ -14,6 +14,12 @@ define([
             expect(point2.y).toBe(2);
         });
 
+        it('can find the distance between itself and another Point', function () {
+            var p1 = new Point(-2, 1);
+            var p2 = new Point(1, 5);
+            expect(p1.distanceTo(p2)).toBe(5);
+        });
+
         it('can be transformed', function () {
             var p1 = new Point(2, 3);
 
