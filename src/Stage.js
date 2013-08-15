@@ -11,77 +11,78 @@ define([
                 height: 480,
                 width: 640
             },
-            targetFps: 60
+            targetFps: 60,
+            context: '2d'
         };
-
-        var CONTEXT = '2d';
-
-        var self = this;
-        var canvas;
-        var context;
-        var frame;
-        var actorManager = new ActorManager(self);
-
-        var createCanvas = function () {
-            canvas = document.createElement('canvas');
-            canvas.setAttribute('height', options.style.height);
-            canvas.setAttribute('width', options.style.width);
-            canvas.style.background = options.style.background;
-            canvas.style.border = options.style.border;
-            container.appendChild(canvas);
-            return canvas;
-        };
+        var _self = this;
+        var _canvas;
+        var _context;
+        var _frame;
+        var _actorManager = new ActorManager(_self);
 
         var initialize = function () {
-            canvas = createCanvas();
-            context = canvas.getContext(CONTEXT);
+            var createCanvas = function () {
+                _canvas = document.createElement('canvas');
+                _canvas.setAttribute('height', options.style.height);
+                _canvas.setAttribute('width', options.style.width);
+                _canvas.style.background = options.style.background;
+                _canvas.style.border = options.style.border;
+                container.appendChild(_canvas);
+                return _canvas;
+            };
+            _canvas = createCanvas();
+            _context = _canvas.getContext(options.context);
         };
         initialize();
 
-        // http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
-        var requestAnimFrame = (function(){
-            return window.requestAnimationFrame ||
-                window.webkitRequestAnimationFrame ||
-                window.mozRequestAnimationFrame ||
-                function( callback ){
-                    window.setTimeout(callback, 1000 / 60);
-                };
-        })();
-
-        // http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
-        var cancelAnimFrame = (function(){
-            return window.cancelAnimationFrame ||
-                window.cancelAnimationFrame ||
-                window.cancelAnimationFrame ||
-                function(timeout){
-                    window.clearTimeout(timeout);
-                };
-        })();
-
         var loop = function () {
-            actorManager.update(canvas);
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            actorManager.render(context);
-            frame = requestAnimFrame(loop);
+
+            // http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
+            var requestAnimFrame = (function(){
+                return window.requestAnimationFrame ||
+                    window.webkitRequestAnimationFrame ||
+                    window.mozRequestAnimationFrame ||
+                    function( callback ){
+                        window.setTimeout(callback, 1000 / 60);
+                    };
+            })();
+
+            _actorManager.update(_canvas);
+            _context.clearRect(0, 0, _canvas.width, _canvas.height);
+            _actorManager.render(_context);
+            _frame = requestAnimFrame(loop);
         };
 
-        self.start = function () {
+        Object.defineProperty(_self, 'canvas', {
+            get: function () {
+                return _canvas;
+            }
+        });
+
+        _self.start = function () {
             loop();
         };
 
-        self.stop = function () {
-            cancelAnimFrame(frame);
-            frame = undefined;
+        _self.stop = function () {
+
+            // http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
+            var cancelAnimFrame = (function(){
+                return window.cancelAnimationFrame ||
+                    window.cancelAnimationFrame ||
+                    window.cancelAnimationFrame ||
+                    function(timeout){
+                        window.clearTimeout(timeout);
+                    };
+            })();
+
+            cancelAnimFrame(_frame);
+            _frame = undefined;
         };
 
-        self.isStarted = function () {
-            return frame ? true : false;
+        _self.isStarted = function () {
+            return _frame ? true : false;
         };
 
-        self.getCanvas = function () {
-            return canvas;
-        };
-
-        self.addActor = actorManager.addActor;
+        _self.addActor = _actorManager.addActor;
     };
 });

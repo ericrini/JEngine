@@ -27,17 +27,19 @@ define([
 
             // Trigger collisions on all actors.
             Iterator.each(_actors, function (actor) {
-                Iterator.each(_actors, function (anotherActor) {
-                    if (actor !== anotherActor) {
-                        var mtv = actor.bounds.intersects(anotherActor.bounds);
-                        if (mtv) {
-                            actor.collision({
-                                actor: anotherActor,
-                                vector: mtv
-                            });
+                if (actor.bounds) {
+                    Iterator.each(_actors, function (anotherActor) {
+                        if (actor !== anotherActor && anotherActor.bounds) {
+                            var mtv = actor.bounds.intersects(anotherActor.bounds);
+                            if (mtv) {
+                                actor.collision({
+                                    actor: anotherActor,
+                                    vector: mtv
+                                });
+                            }
                         }
-                    }
-                });
+                    });
+                }
             });
         };
 

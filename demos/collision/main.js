@@ -9,7 +9,7 @@ define([
     'use strict';
 
     // Define an actor.
-    var Actor = function (x, y, size, radius, move) {
+    var Actor = function (x, y, size, radius, move, color) {
         var SPEED = 5;
         var self = this;
         var fill = false;
@@ -55,7 +55,7 @@ define([
                 event.context.fillStyle = 'red';
             }
             else {
-                event.context.fillStyle = 'blue';
+                event.context.fillStyle = color;
             }
             event.context.fill();
             event.context.lineWidth = 3;
@@ -64,10 +64,12 @@ define([
     };
 
     // Define a stage.
-    var a1 = new Actor(50, 50, 3, 50, true);
-    var a2 = new Actor(145, 145, 8, 100, false);
+    var a1 = new Actor(215, 215, 3, 50, true, 'yellow');
+    var a2 = new Actor(100, 100, 8, 75, false, 'blue');
+    var a3 = new Actor(300, 300, 5, 75, false, 'blue');
     var container = document.getElementById('container');
     var stage = new JEngine.Stage(container);
+    stage.addActor(a3);
     stage.addActor(a2);
     stage.addActor(a1);
     stage.start();
