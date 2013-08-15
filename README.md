@@ -40,6 +40,9 @@ RESOURCES
     DISTANCE FORMULA
     http://www.purplemath.com/modules/distform.htm
 
+    LAW OF COSINE
+    http://www.mathsisfun.com/algebra/trig-cosine-law.html
+
     SEPARATING AXIS THEOREM
     http://www.codezealot.org/archives/55#sat-convex
     http://rocketmandevelopment.com/blog/separation-of-axis-theorem-for-collision-detection/
@@ -50,3 +53,6 @@ RESOURCES
     CALCULATORS
     http://www.mathsisfun.com/algebra/matrix-calculator.html
     http://www.mathsisfun.com/algebra/vector-calculator.html
+
+    JAVASCRIPT KEY CODES
+    http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes

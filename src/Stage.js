@@ -1,11 +1,10 @@
 define([
-    'src/util/Inheritance',
     'src/ActorManager'
-], function (Inheritance, ActorManager) {
+], function (ActorManager) {
     'use strict';
 
     return function (container, options) {
-        options = Inheritance.extend({
+        options = {
             style: {
                 background: '#ddd',
                 border: '1px solid Black',
@@ -13,7 +12,7 @@ define([
                 width: 640
             },
             targetFps: 60
-        }, options);
+        };
 
         var CONTEXT = '2d';
 

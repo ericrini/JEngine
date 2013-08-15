@@ -1,11 +1,50 @@
 define([
-    'src/geometry/Polygon'
-], function (Polygon) {
+    'src/geometry/Polygon',
+    'src/geometry/Point'
+], function (Polygon, Point) {
     'use strict';
 
     describe('The Polygon', function () {
-        it('can be transformed by a Matrix', function () {
+        it('can be constructed', function () {
+            var poly;
 
+            poly = new Polygon();
+            expect(poly).toBeDefined();
+            expect(poly.vertices.length).toBe(0);
+
+            poly = new Polygon(8, 100);
+            expect(poly.vertices.length).toBe(8);
+        });
+
+        it('can determine its width and height', function () {
+            var poly;
+
+            poly = new Polygon();
+            expect(poly.width).toBe(0);
+            expect(poly.height).toBe(0);
+            poly.addVertex(12, 0);
+            poly.addVertex(0, 14);
+            poly.addVertex(17, 16);
+            expect(poly.width).toBe(17);
+            expect(poly.height).toBe(16);
+        });
+
+        it('can be transformed by a Matrix', function () {
+            expect(true).toBe(false);
+        });
+
+        it ('can determine if a Point lies within its bounds', function () {
+            var poly = new Polygon();
+            poly.addVertex(0, 0);
+            poly.addVertex(10, 0);
+            poly.addVertex(10, 10);
+            poly.addVertex(0, 10);
+
+            var outside = new Point (11, 11);
+            expect(poly.contains(outside)).toBe(false);
+
+            var inside = new Point(5, 5);
+            expect(poly.contains(inside)).toBe(true);
         });
 
         it('can find the minimum translation Vector required to separate itself from a Polygon it intersects with', function () {

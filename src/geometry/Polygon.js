@@ -5,13 +5,45 @@ define([
 ], function (Iterator, Point, Vector) {
     'use strict';
 
-    return function () {
+    return function (vertexCount, radius) {
         var self = this;
         var _vertices = [];
 
         Object.defineProperty(self, "vertices", {
             get: function () {
                 return _vertices;
+            }
+        });
+
+        Object.defineProperty(self, "width", {
+            get: function () {
+                var min = null;
+                var max = null;
+                Iterator.each(_vertices, function (vertice) {
+                    if (vertice.x < min || min === null) {
+                        min = vertice.x;
+                    }
+                    if (vertice.x > max || max === null) {
+                        max = vertice.x;
+                    }
+                });
+                return max - min;
+            }
+        });
+
+        Object.defineProperty(self, "height", {
+            get: function () {
+                var min = null;
+                var max = null;
+                Iterator.each(_vertices, function (vertice) {
+                    if (vertice.y < min || min === null) {
+                        min = vertice.y;
+                    }
+                    if (vertice.y > max || max === null) {
+                        max = vertice.y;
+                    }
+                });
+                return max - min;
             }
         });
 
@@ -26,6 +58,27 @@ define([
         };
 
         /**
+         * Determines if a Point lies within the bounds of a convex Polygon.
+         * @param point
+         */
+        self.contains = function (point) {
+            var sum = 0;
+            for (var i = 0; i < _vertices.length; i++) {
+                var vertex = _vertices[i];
+                var nextVertex = i + 1 < _vertices.length ? _vertices[i + 1] : _vertices[0];
+                var a = point.distanceTo(nextVertex);
+                var b = point.distanceTo(vertex);
+                var c = vertex.distanceTo(nextVertex);
+
+                // Algebraic manipulation of the law of cosines.
+                sum += Math.acos((Math.pow(a, 2) + Math.pow(b, 2) - Math.pow(c, 2)) / (2 * a * b));
+            }
+
+            // If all the angles add up to exactly a full circle, the point is within the Polygon.
+            return sum === Math.PI * 2;
+        };
+
+        /**
          * Finds the minimum translation vector to separate two intersected Polygons.
          * @param polygon
          * @returns {Vector} The MTV if the Polygons intersect or null if they do not.
@@ -35,7 +88,7 @@ define([
             // An array of Vectors such that each Vector is perpendicular to a side of the Polygon.
             var getAxes = function (polygon) {
                 var axes = [];
-                Iterator.each(_vertices, function (vertex, index, vertices) {
+                Iterator.each(polygon.vertices, function (vertex, index, vertices) {
                     var currentVector = new Vector(vertex.x, vertex.y);
                     var nextVertex = vertices[index + 1] ? vertices[index + 1] : vertices[0];
                     var nextVector = new Vector(nextVertex.x, nextVertex.y);
@@ -56,7 +109,7 @@ define([
                     if (min === null || p < min) {
                         min = p;
                     }
-                    else if (max === null || p > max) {
+                    if (max === null || p > max) {
                         max = p;
                     }
                 });
@@ -112,5 +165,20 @@ define([
             // move it out of collision. This is insanely useful for game logic.
             return mtv;
         };
+
+        /**
+         * The constructor can initialize the Polygon to any regular n-gon automatically. If the constructor parameters
+         * are omitted, vertexes can still be added individually.
+         */
+        if (vertexCount && radius) {
+            var radians = (2 * Math.PI) / vertexCount;
+            for (var i = 0; i < vertexCount; i++)
+            {
+                _vertices.push(new Point(
+                    radius + radius * Math.sin(i * radians),
+                    radius + radius * Math.cos(i * radians)
+                ));
+            }
+        }
     };
 });
