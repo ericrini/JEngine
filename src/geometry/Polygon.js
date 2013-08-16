@@ -74,8 +74,9 @@ define([
                 sum += Math.acos((Math.pow(a, 2) + Math.pow(b, 2) - Math.pow(c, 2)) / (2 * a * b));
             }
 
-            // If all the angles add up to exactly a full circle, the point is within the Polygon.
-            return sum === Math.PI * 2;
+            // If all the angles add up to within 4 decimals of 2PI... give it to them.
+            var roundedSum = Math.round(sum * 10000) / 10000;
+            return roundedSum >= 6.2831 && roundedSum <= 6.2832;
         };
 
         /**

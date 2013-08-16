@@ -35,15 +35,14 @@ define([
 
         it ('can determine if a Point lies within its bounds', function () {
             var poly = new Polygon();
-            poly.addVertex(0, 0);
-            poly.addVertex(10, 0);
-            poly.addVertex(10, 10);
-            poly.addVertex(0, 10);
+            poly.addVertex(12, 3);
+            poly.addVertex(3, 14);
+            poly.addVertex(17, 16);
 
-            var outside = new Point (11, 11);
+            var outside = new Point (5, 5);
             expect(poly.contains(outside)).toBe(false);
 
-            var inside = new Point(5, 5);
+            var inside = new Point(10, 12);
             expect(poly.contains(inside)).toBe(true);
         });
 

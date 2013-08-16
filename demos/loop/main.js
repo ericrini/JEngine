@@ -41,12 +41,12 @@ define([
     // Define a stage.
     var container = document.getElementById('container');
     var stage = new JEngine.Stage(container);
-    stage.addActor(new Actor('Red'));
-    stage.addActor(new Actor('Blue'));
-    stage.addActor(new Actor('Green'));
-    stage.addActor(new Actor('Yellow'));
-    stage.addActor(new Actor('Orange'));
-    stage.addActor(new Actor('Purple'));
+    stage.actorManager.addActor(new Actor('Red'));
+    stage.actorManager.addActor(new Actor('Blue'));
+    stage.actorManager.addActor(new Actor('Green'));
+    stage.actorManager.addActor(new Actor('Yellow'));
+    stage.actorManager.addActor(new Actor('Orange'));
+    stage.actorManager.addActor(new Actor('Purple'));
     stage.start();
 
     document.getElementById("toggle").addEventListener('click', function () {

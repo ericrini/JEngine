@@ -9,10 +9,12 @@ define([
     'use strict';
 
     // Define an actor.
-    var Actor = function (x, y, size, radius, move, color) {
+    var Actor = function (x, y, size, radius, move, color, highlight) {
         var SPEED = 5;
         var self = this;
         var fill = false;
+        var hover = false;
+        var drag = false;
 
         self.bounds = new Polygon(size, radius);
 
@@ -23,25 +25,19 @@ define([
         };
 
         self.update = function (event) {
-            fill = false;
-            if (move) {
-                if (event.keyboard.indexOf(37) > -1) {
-                    self.bounds.transform(new Matrix(1, 0, 0, 1, -SPEED, 0));
-                }
-                if (event.keyboard.indexOf(38) > -1) {
-                    self.bounds.transform(new Matrix(1, 0, 0, 1, 0, -SPEED));
-                }
-                if (event.keyboard.indexOf(39) > -1) {
-                    self.bounds.transform(new Matrix(1, 0, 0, 1, SPEED, 0));
-                }
-                if (event.keyboard.indexOf(40) > -1) {
-                    self.bounds.transform(new Matrix(1, 0, 0, 1, 0, SPEED));
+            hover = false;
+            if (self.bounds.contains(event.mouse.position)) {
+                hover = true;
+                if (event.mouse.down) {
+                    drag = true;
                 }
             }
-        };
-
-        self.collision = function (event) {
-            fill = true;
+            if (drag && event.mouse.down) {
+                self.bounds.transform(new Matrix(1, 0, 0, 1, event.mouse.delta.x, event.mouse.delta.y));
+            }
+            else {
+                drag = false;
+            }
         };
 
         self.render = function (event) {
@@ -51,8 +47,8 @@ define([
                 event.context.lineTo(vertex.x, vertex.y);
             });
             event.context.lineTo(self.bounds.vertices[0].x, self.bounds.vertices[0].y);
-            if (fill) {
-                event.context.fillStyle = 'red';
+            if (hover || drag) {
+                event.context.fillStyle = highlight;
             }
             else {
                 event.context.fillStyle = color;
@@ -64,13 +60,13 @@ define([
     };
 
     // Define a stage.
-    var a1 = new Actor(215, 215, 3, 50, true, 'yellow');
-    var a2 = new Actor(100, 100, 8, 75, false, 'blue');
-    var a3 = new Actor(300, 300, 5, 75, false, 'blue');
+    var a1 = new Actor(200, 100, 3, 50, true, 'darkgreen', 'lime');
+    var a2 = new Actor(100, 200, 5, 75, true, 'darkblue', 'cyan');
+    var a3 = new Actor(300, 200, 8, 100, true, 'teal', 'aquamarine');
     var container = document.getElementById('container');
     var stage = new JEngine.Stage(container);
-    stage.actorManager.addActor(a3);
-    stage.actorManager.addActor(a2);
     stage.actorManager.addActor(a1);
+    stage.actorManager.addActor(a2);
+    stage.actorManager.addActor(a3);
     stage.start();
 });
