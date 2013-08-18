@@ -1,7 +1,8 @@
 define([
     'src/geometry/Polygon',
-    'src/geometry/Point'
-], function (Polygon, Point) {
+    'src/geometry/Point',
+    'src/geometry/Matrix'
+], function (Polygon, Point, Matrix) {
     'use strict';
 
     describe('The Polygon', function () {
@@ -30,7 +31,16 @@ define([
         });
 
         it('can be transformed by a Matrix', function () {
-            expect(true).toBe(false);
+            var poly = new Polygon(4, 100);
+            poly.transform(new Matrix(1, 0, 0, 1, 100, 50));
+            expect(poly.vertices[0].y).toBe(250);
+            expect(poly.vertices[0].x).toBe(200);
+            expect(poly.vertices[1].y).toBe(150);
+            expect(poly.vertices[1].x).toBe(300);
+            expect(poly.vertices[2].y).toBe(50);
+            expect(poly.vertices[2].x).toBe(200);
+            expect(poly.vertices[3].y).toBe(150);
+            expect(poly.vertices[3].x).toBe(100);
         });
 
         it ('can determine if a Point lies within its bounds', function () {

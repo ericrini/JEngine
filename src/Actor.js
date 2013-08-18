@@ -28,14 +28,14 @@ define([
 
         self.onInit = function () {
 
-        }
+        };
 
         self.update = function () {
         };
 
         self.onUpdate = function () {
 
-        }
+        };
 
         self.render = function () {
         };

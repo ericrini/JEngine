@@ -4,53 +4,40 @@ define([
     'use strict';
 
     describe('The ActorManager', function () {
-        var init;
-        var update;
-        var render;
-        var actor;
         var actorManager;
 
         beforeEach(function() {
-            init = 0;
-            update = 0;
-            render = 0;
-            actor = {
-                init: function () {
-                    init++;
-                },
-                update: function () {
-                    update++;
-                },
-                render: function () {
-                    render++;
-                }
-            };
             actorManager = new ActorManager({
-                getCanvas: function () {
-                    return {};
+                canvas: function () {
+                    return {
+                        height: 640,
+                        width: 480,
+                        addEventListener: function () {}
+                    };
                 }
             });
-            actorManager.addActor(actor);
-            actorManager.addActor(actor);
-            actorManager.addActor(actor);
-            actorManager.update();
-            actorManager.render();
-            actorManager.update();
-            actorManager.render();
-            actorManager.update();
-            actorManager.render();
         });
 
-        it('will intialize new actors.', function () {
-            expect(init).toBe(3);
+        it('will correctly initialize new Actors', function () {
+            var count = 0;
+            var actor = {
+                init: function (event) {
+                    expect(event).toBeDefined();
+                    count++;
+                }
+            };
+            actorManager.addActor(actor);
+            actorManager.addActor(actor);
+            expect(count).toBe(2);
         });
 
-        it('will perform an update on each actor when it is updated.', function () {
-            expect(update).toBe(9);
+        it('will correctly update Actors', function () {
         });
 
-        it('will perform a render on each actor when it is rendered.', function () {
-            expect(render).toBe(9);
+        it('will correctly render Actors', function () {
+        });
+
+        it('will correctly trigger collision events', function () {
         });
     });
 });

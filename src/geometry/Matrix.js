@@ -64,6 +64,36 @@ define([], function () {
             }
         });
 
+        self.translate = function (tx, ty) {
+            return self.getProduct(new Matrix(1, 0, 0, 1, tx, ty));
+        };
+
+        self.rotate = function (degrees, point) {
+            var radians = (Math.PI / 180) * degrees;
+            return self.getProduct(new Matrix(
+                Math.cos(radians),
+                Math.sin(radians) * -1,
+                Math.sin(radians),
+                Math.cos(radians)
+            ));
+        };
+
+        self.scale = function (sx, sy) {
+            return self.getProduct(new Matrix(sx, 0, 0, sy, 0, 0));
+        };
+
+        self.skew = function (sx, sy) {
+            return self.getProduct(new Matrix(1, sy, sx, 1, 0, 0));
+        };
+
+        self.mirrorVertical = function () {
+            return self.getProduct(new Matrix(1, 0, 0, -1, 0, 0));
+        };
+
+        self.mirrorHorizontal = function () {
+            return self.getProduct(new Matrix(-1, 0, 0, 1, 0, 0));
+        };
+
         self.getProduct = function (inMatrix) {
             return new Matrix(
                 (_a * inMatrix.a) + (_c * inMatrix.b),

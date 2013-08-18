@@ -12,6 +12,14 @@ define([
 ], function (jasmine) {
     'use strict';
 
+    beforeEach(function () {
+        this.addMatchers({
+            toBeApprox: function (expected) {
+                return Math.round(this.actual * 1000) / 1000 === expected; // Round to 3 decimal places.
+            }
+        });
+    });
+
     require([
         'test/spec/util/inheritance',
         'test/spec/util/iterator',
@@ -20,8 +28,6 @@ define([
         'test/spec/geometry/matrix',
         'test/spec/geometry/polygon',
         'test/spec/observable',
-        'test/spec/actorManager',
-        'test/spec/jengine',
         'lib/jasmine/jasmine-html'
     ], function () {
         var jasmineEnv = jasmine.getEnv();

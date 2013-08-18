@@ -1,6 +1,7 @@
 define([
-    'src/geometry/matrix'
-], function (Matrix) {
+    'src/geometry/matrix',
+    'src/geometry/point'
+], function (Matrix, Point) {
     'use strict';
 
     describe('A Matrix', function () {
@@ -33,5 +34,19 @@ define([
             expect(m3.e).toBe(41);
             expect(m3.f).toBe(39);
         });
-    })
+
+        it('can translate to a given location', function () {
+            var p1 = new Point(5, 5);
+            var m1 = new Matrix().translate(3, -4);
+            expect(p1.transform(m1).x).toBe(8);
+            expect(p1.transform(m1).y).toBe(1);
+        });
+
+        it('can rotate a point', function () {
+            var p1 = new Point(5, 5);
+            var m1 = new Matrix().rotate(10, 10, 45);
+            expect(p1.transform(m1).x).toBeApprox(5.792);
+            expect(p1.transform(m1).y).toBeApprox(4.056);
+        });
+    });
 });

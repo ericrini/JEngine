@@ -5,14 +5,6 @@ define([
 
     describe('A Vector', function () {
 
-        beforeEach(function () {
-            this.addMatchers({
-                toBeApprox: function (expected) {
-                    return Math.round(this.actual * 1000) / 1000 === expected; // Round to 3 decimal places.
-                }
-            });
-        });
-
         it('has a constructor', function () {
             var v1 = new Vector();
             expect(v1.x).toBe(0);

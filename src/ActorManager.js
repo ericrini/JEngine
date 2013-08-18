@@ -15,9 +15,11 @@ define([
         };
 
         _self.addActor = function (actor) {
-            actor.init({
-                stage: stage
-            });
+            if (actor.init) {
+                actor.init({
+                    stage: stage
+                });
+            }
             _actors.push(actor);
         };
 
@@ -25,11 +27,13 @@ define([
 
             // Update the position of all actors.
             Iterator.each(_actors, function (actor) {
-                actor.update({
-                    stage: stage,
-                    keyboard: _keyboard,
-                    mouse: _mouse
-                });
+                if (actor.update) {
+                    actor.update({
+                        stage: stage,
+                        keyboard: _keyboard,
+                        mouse: _mouse
+                    });
+                }
             });
 
             // Consume the mouse state.
