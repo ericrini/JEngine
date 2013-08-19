@@ -49,6 +49,7 @@ define([
 
         self.addVertex = function (x, y) {
             _vertices.push(new Point(x, y));
+            return self;
         };
 
         self.transform = function (matrix) {
