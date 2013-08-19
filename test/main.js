@@ -20,7 +20,6 @@ define([
         'test/spec/geometry/matrix',
         'test/spec/geometry/polygon',
         'test/spec/observable',
-        'test/spec/actorManager',
         'test/spec/jengine',
         'lib/jasmine/jasmine-html'
     ], function () {
