@@ -21,7 +21,7 @@ define([
         self.id = Math.random();
 
         self.init = function (event) {
-            self.bounds.transform(new Matrix(1, 0, 0, 1, x, y));
+            self.bounds = self.bounds.transform(new Matrix(1, 0, 0, 1, x, y));
         };
 
         self.update = function (event) {
@@ -33,7 +33,7 @@ define([
                 }
             }
             if (drag && event.mouse.down) {
-                self.bounds.transform(new Matrix(1, 0, 0, 1, event.mouse.delta.x, event.mouse.delta.y));
+                self.bounds =  self.bounds.transform(new Matrix(1, 0, 0, 1, event.mouse.delta.x, event.mouse.delta.y));
             }
             else {
                 drag = false;

@@ -5,7 +5,7 @@ define([
 ], function (Iterator, Point, Vector) {
     'use strict';
 
-    return function (vertexCount, radius) {
+    var Polygon = function (vertexCount, radius) {
         var self = this;
         var _vertices = [];
 
@@ -48,14 +48,21 @@ define([
         });
 
         self.addVertex = function (x, y) {
-            _vertices.push(new Point(x, y));
+            if (x instanceof Point) {
+                _vertices.push(x);
+            }
+            else {
+                _vertices.push(new Point(x, y));
+            }
             return self;
         };
 
         self.transform = function (matrix) {
-            Iterator.each(_vertices, function (vertex, index) {
-                _vertices[index] = vertex.transform(matrix);
-            });
+            var polygon = new Polygon();
+            for (var i = 0; i < _vertices.length; i++) {
+                polygon.addVertex(_vertices[i].transform(matrix));
+            }
+            return polygon;
         };
 
         /**
@@ -183,4 +190,6 @@ define([
             }
         }
     };
+
+    return Polygon;
 });

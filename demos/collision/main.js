@@ -19,23 +19,23 @@ define([
         self.id = Math.random();
 
         self.init = function (event) {
-            self.bounds.transform(new Matrix(1, 0, 0, 1, x, y));
+            self.bounds = self.bounds.transform(new Matrix(1, 0, 0, 1, x, y));
         };
 
         self.update = function (event) {
             fill = false;
             if (move) {
                 if (event.keyboard.indexOf(37) > -1) {
-                    self.bounds.transform(new Matrix(1, 0, 0, 1, -SPEED, 0));
+                    self.bounds = self.bounds.transform(new Matrix(1, 0, 0, 1, -SPEED, 0));
                 }
                 if (event.keyboard.indexOf(38) > -1) {
-                    self.bounds.transform(new Matrix(1, 0, 0, 1, 0, -SPEED));
+                    self.bounds = self.bounds.transform(new Matrix(1, 0, 0, 1, 0, -SPEED));
                 }
                 if (event.keyboard.indexOf(39) > -1) {
-                    self.bounds.transform(new Matrix(1, 0, 0, 1, SPEED, 0));
+                    self.bounds = self.bounds.transform(new Matrix(1, 0, 0, 1, SPEED, 0));
                 }
                 if (event.keyboard.indexOf(40) > -1) {
-                    self.bounds.transform(new Matrix(1, 0, 0, 1, 0, SPEED));
+                    self.bounds = self.bounds.transform(new Matrix(1, 0, 0, 1, 0, SPEED));
                 }
             }
         };
