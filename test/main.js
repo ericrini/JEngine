@@ -18,6 +18,7 @@ define([
         'test/spec/geometry/point',
         'test/spec/geometry/vector',
         'test/spec/geometry/matrix',
+        'test/spec/geometry/rectangle',
         'test/spec/geometry/polygon',
         'test/spec/observable',
         'test/spec/jengine',
