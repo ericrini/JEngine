@@ -13,54 +13,36 @@ define([], function () {
         Object.defineProperty(self, "a", {
             get: function () {
                 return _a;
-            },
-            set: function (a) {
-                _a = a;
             }
         });
 
         Object.defineProperty(self, "b", {
             get: function () {
                 return _b;
-            },
-            set: function (b) {
-                _b = b;
             }
         });
 
         Object.defineProperty(self, "c", {
             get: function () {
                 return _c;
-            },
-            set: function (c) {
-                _c = c;
             }
         });
 
         Object.defineProperty(self, "d", {
             get: function () {
                 return _d;
-            },
-            set: function (d) {
-                _d = d;
             }
         });
 
         Object.defineProperty(self, "e", {
             get: function () {
                 return _e;
-            },
-            set: function (e) {
-                _e = e;
             }
         });
 
         Object.defineProperty(self, "f", {
             get: function () {
                 return _f;
-            },
-            set: function (f) {
-                _f = f;
             }
         });
 

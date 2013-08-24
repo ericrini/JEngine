@@ -1,7 +1,8 @@
 define([
     'src/geometry/Matrix',
+    'src/geometry/Rectangle',
     'src/geometry/Polygon'
-], function (Matrix, Polygon) {
+], function (Matrix, Rectangle, Polygon) {
     'use strict';
 
     return function (strategy, bounds, options) {
@@ -10,7 +11,8 @@ define([
             drawBounds: false
         };
         var _matrix = new Matrix();
-        var _bounds = bounds ? bounds : new Polygon();
+        var _boundingBox = new Rectangle();
+        var _collisionRegion = new Polygon();
         var _transformedBounds = _bounds;
         var _strategy = strategy ? strategy : {};
 

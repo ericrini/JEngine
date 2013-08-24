@@ -43,6 +43,9 @@ RESOURCES
     LAW OF COSINE
     http://www.mathsisfun.com/algebra/trig-cosine-law.html
 
+    AXIS ALIGNED RECTANGLE COLLISION
+    http://leetcode.com/2011/05/determine-if-two-rectangles-overlap.html
+
     SEPARATING AXIS THEOREM
     http://www.codezealot.org/archives/55#sat-convex
     http://rocketmandevelopment.com/blog/separation-of-axis-theorem-for-collision-detection/

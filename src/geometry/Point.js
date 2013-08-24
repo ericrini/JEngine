@@ -9,18 +9,12 @@ define([], function () {
         Object.defineProperty(self, "x", {
             get: function () {
                 return _x;
-            },
-            set: function (x) {
-                _x = x;
             }
         });
 
         Object.defineProperty(self, "y", {
             get: function () {
                 return _y;
-            },
-            set: function (y) {
-                _y = y;
             }
         });
 
